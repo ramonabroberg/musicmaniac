@@ -7,13 +7,25 @@
     min-width: 75px;
     border-color: transparent;
   }
-  
+
   .Button:hover {
     opacity: 0.8;
     border-color: transparent;
     cursor: pointer;
   }
   
+  .Button:hover:active {
+    background-color: rgb(163, 0, 0) !important;
+  }
+  
+  .Button:active {
+    background-color: rgb(163, 0, 0) !important;
+  }
+  
+  .Button:focus {
+    background-color: rgb(163, 0, 0);
+  }
+
   .Wide {
     padding: 10px 50px;
     width: 100%;
@@ -25,6 +37,6 @@
   }
   
   .Bright {
-    background-color: rgb(163, 0, 0);;
+    background-color: rgb(163, 0, 0);
     color: #fafafa;
   }

@@ -14,13 +14,13 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
             <NavLink exact className={styles.NavLink} activeClassName={styles.Active} to="/">
-              <i class="fa-solid fa-house"></i>Home
+              <i className="fa-solid fa-house"></i>Home
             </NavLink>
             <NavLink className={styles.NavLink} activeClassName={styles.Active} to="/signin">
-              <i class="fa-solid fa-arrow-right-to-bracket"></i>Sign in
+              <i className="fa-solid fa-arrow-right-to-bracket"></i>Sign in
             </NavLink>
             <NavLink className={styles.NavLink} activeClassName={styles.Active} to="signup">
-              <i class="fa-solid fa-user-plus"></i>Sign up
+              <i className="fa-solid fa-user-plus"></i>Sign up
             </NavLink>
           </Nav>
         </Navbar.Collapse>

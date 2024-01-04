@@ -46,7 +46,7 @@ const SignUpForm = () => {
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={{ span:6, offset:3 }}>
-        <Container className={`${appStyles.Content} p-4 `}>
+        <Container className={`${appStyles.Content}`}>
           <h1 className={styles.Header}>Sign Up</h1>
 
           <Form onSubmit={handleSubmit}>
