@@ -1,0 +1,30 @@
+.Button {
+    font-size: 1rem;
+    align-self: center;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin: 0 2px;
+    min-width: 75px;
+    border-color: transparent;
+  }
+  
+  .Button:hover {
+    opacity: 0.8;
+    border-color: transparent;
+    cursor: pointer;
+  }
+  
+  .Wide {
+    padding: 10px 50px;
+    width: 100%;
+  }
+  
+  .Bright:hover {
+    background-color: rgb(214, 136, 136);
+    color: #fafafa;
+  }
+  
+  .Bright {
+    background-color: rgb(163, 0, 0);;
+    color: #fafafa;
+  }

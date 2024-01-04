@@ -1,11 +1,19 @@
 .App {
     font-family: 'Source Code Pro', 'monospace', 'sans-serif';
     min-height: 100vh;
-    background-color: rgb(170, 170, 170);
+    background-color: rgb(183, 183, 183);
 }
 
 .Main {
     padding-top: 80px;
+}
+
+.Content {
+    background-color: #fafafa;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 1.5rem;
+    box-shadow: 1px 1px 6px 1px gray;
 }
 
 * {

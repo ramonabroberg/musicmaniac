@@ -1,0 +1,25 @@
+.Row {
+    height: calc(100vh - 80px);
+}
+
+.Header {
+    text-align: center;
+    color: rgb(163, 0, 0);
+    font-weight: 600;
+    font-size: x-large;
+}
+
+.Input {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.Link {
+    display: block;
+    text-align: center;
+    color: rgb(163, 0, 0);
+}
+
+.Link:hover {
+    color: rgb(214, 136, 136);
+}
