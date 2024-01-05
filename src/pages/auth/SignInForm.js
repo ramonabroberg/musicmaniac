@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -12,9 +13,11 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 
-import axios from "axios";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
-const SignUpForm = () => {
+const SignInForm = () => {
+  const setCurrentUser = useSetCurrentUser();
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -35,7 +38,8 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
       history.push("/");
     } catch (err) {
       setErrors(err.response?.data);
@@ -45,7 +49,7 @@ const SignUpForm = () => {
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={{ span: 6, offset: 3 }}>
-        <Container className={`${appStyles.Content}`}>
+        <Container className={appStyles.Content}>
           <h1 className={styles.Header}>Sign In</h1>
 
           <Form onSubmit={handleSubmit}>
@@ -108,4 +112,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

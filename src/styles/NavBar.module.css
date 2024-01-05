@@ -7,7 +7,7 @@
 
 .Logo {
     font-family: 'Rock Salt', 'cursive', 'sans-serif';
-    font-size: 1.7rem;
+    font-size: 1.2rem;
 }
 
 i {
@@ -16,9 +16,19 @@ i {
 }
 
 .NavLink {
-    padding: 7px;
+    padding: 6px;
 }
 
 .Active i {
     color: rgb(163, 0, 0);
+}
+
+@media screen and (min-width: 768px) {
+    .Logo {
+        font-size: 1.5rem;
+    }
+
+    .NavLink i {
+        font-size: 18px;
+    }
 }
