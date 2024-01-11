@@ -12,7 +12,7 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 
 import axios from "axios";
-import { Image } from "react-bootstrap";
+import { Alert, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -113,6 +113,11 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+            {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="instrument">
         <Form.Label>Instrument</Form.Label>
@@ -131,6 +136,11 @@ function PostCreateForm() {
           ))}
         </Form.Control>
       </Form.Group>
+      {errors?.instrument?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+            {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="genre">
         <Form.Label>Genre</Form.Label>
@@ -149,6 +159,11 @@ function PostCreateForm() {
           ))}
         </Form.Control>
       </Form.Group>
+      {errors?.genre?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+            {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="city">
         <Form.Label>City</Form.Label>
@@ -160,6 +175,11 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.city?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+            {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="website">
         <Form.Label>Link to music</Form.Label>
@@ -171,18 +191,27 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.website?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+            {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="description">
         <Form.Label>Description</Form.Label>
         <Form.Control
           className={styles.Input}
           type="textarea"
-          rows={5}
           name="description"
           value={description}
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.description?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+            {message}
+        </Alert>
+      ))}
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Light}`}
@@ -193,7 +222,6 @@ function PostCreateForm() {
       <Button
         className={`${btnStyles.Button} ${btnStyles.Red}`}
         type="submit"
-        disabled={instrument === "Vocalist wanted" || genre === "Rock"}
       >
         Create
       </Button>
@@ -239,6 +267,11 @@ function PostCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
+            {errors?.image?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+            {message}
+        </Alert>
+      ))}
           </Container>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center mb-3`}
