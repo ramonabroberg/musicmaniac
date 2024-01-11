@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -12,31 +12,38 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 
 import axios from "axios";
+import { Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function PostCreateForm() {
   const [errors, setErrors] = useState({});
 
-  const [instruments, setInstruments] = useState([
-    { id: "select_instrument", name: "Select an instrument..." },
-  ]);
-  const [genres, setGenres] = useState([
-    { id: "select_genre", name: "Select a genre..." },
-  ]);
+  const [instruments, setInstruments] = useState([]);
+  const [genres, setGenres] = useState([]);
+
   const [postData, setPostData] = useState({
-    title: "",
     image: "",
-    instrument: "select_instrument",
-    genre: "select_genre",
+    title: "",
+    instrument: "",
+    genre: "",
     city: "",
     website: "",
     description: "",
   });
 
+  const { image, title, instrument, genre, city, website, description } =
+    postData;
+
+  const imageInput = useRef(null);
+
+  const history = useHistory();
+
   useEffect(() => {
     const fetchInstruments = async () => {
       try {
-        const response = await axios.get("/posts/instruments/");
-        setInstruments([...instruments, ...response.data]);
+        const response = await axios.get("/posts/create/instrument/");
+        setInstruments(response.data.results);
       } catch (err) {
         console.log(err);
       }
@@ -44,8 +51,8 @@ function PostCreateForm() {
 
     const fetchGenres = async () => {
       try {
-        const response = await axios.get("/posts/genres/");
-        setGenres([...genres, ...response.data]);
+        const response = await axios.get("/posts/create/genre/");
+        setGenres(response.data.results);
       } catch (err) {
         console.log(err);
       }
@@ -53,18 +60,58 @@ function PostCreateForm() {
 
     fetchInstruments();
     fetchGenres();
-  }, [instruments, genres]);
+  }, []);
+
+  const handleChange = (event) => {
+    setPostData({
+      ...postData,
+      [event.target.id]: event.target.value,
+    });
+  };
+
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(image);
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append('image', imageInput.current.files[0])
+    formData.append('title', title)
+    formData.append('instrument', instrument)
+    formData.append('genre', genre)
+    formData.append('city', city)
+    formData.append('website', website)
+    formData.append('description', description)
+
+    try {
+        const {data} = await axiosReq.post('/posts/', formData);
+        history.push(`/posts/${data.id}`)
+    } catch (err) {
+        if (err.response?.status !== 401) {
+            setErrors(err.response?.data)
+        }
+    }
+  };
 
   const textFields = (
     <div className="text-center">
       <Form.Group controlId="title">
         <Form.Label>Title</Form.Label>
-        <Form.Control className={styles.Input} type="text" name="title" />
-      </Form.Group>
-
-      <Form.Group controlId="post_image">
-        <Form.Label>Image</Form.Label>
-        <Form.Control className={styles.Input} type="file" name="post_image" />
+        <Form.Control
+          className={styles.Input}
+          type="text"
+          name="title"
+          value={title}
+          onChange={handleChange}
+        />
       </Form.Group>
 
       <Form.Group controlId="instrument">
@@ -73,7 +120,8 @@ function PostCreateForm() {
           className={styles.Input}
           as="select"
           name="instrument"
-          value={postData.instrument}
+          value={instrument}
+          onChange={handleChange}
           required
         >
           {instruments.map((instrument) => (
@@ -90,7 +138,8 @@ function PostCreateForm() {
           className={styles.Input}
           as="select"
           name="genre"
-          value={postData.genre}
+          value={genre}
+          onChange={handleChange}
           required
         >
           {genres.map((genre) => (
@@ -101,38 +150,101 @@ function PostCreateForm() {
         </Form.Control>
       </Form.Group>
 
+      <Form.Group controlId="city">
+        <Form.Label>City</Form.Label>
+        <Form.Control
+          className={styles.Input}
+          type="text"
+          name="city"
+          value={city}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="website">
+        <Form.Label>Link to music</Form.Label>
+        <Form.Control
+          className={styles.Input}
+          type="text"
+          name="website"
+          value={website}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="description">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          className={styles.Input}
+          type="textarea"
+          rows={5}
+          name="description"
+          value={description}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
       <Button
         className={`${btnStyles.Button} ${btnStyles.Light}`}
-        onClick={() => {}}
+        onClick={() => history.goBack()}
       >
-        cancel
+        Cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Red}`} type="submit">
-        create
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Red}`}
+        type="submit"
+        disabled={instrument === "Vocalist wanted" || genre === "Rock"}
+      >
+        Create
       </Button>
     </div>
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        <Col className="py-2 p-0" md={{ span: 8, offset: 2 }}>
           <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center mb-3`}
           >
             <Form.Group className="text-center">
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              >
-                <Asset message="Click to upload an image" />
-              </Form.Label>
+              {image ? (
+                <>
+                  <figure>
+                    <Image className={appStyles.Image} src={image} />
+                  </figure>
+                  <div>
+                    <Form.Label
+                      className={`${btnStyles.Button} ${btnStyles.Red}`}
+                      htmlFor="image-upload"
+                    >
+                      Change the image
+                    </Form.Label>
+                  </div>
+                </>
+              ) : (
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image-upload"
+                >
+                  <Asset message="Click to upload an image" />
+                </Form.Label>
+              )}
             </Form.Group>
-            <div className="d-md-none">{textFields}</div>
+            <Form.Group className="d-none">
+              <Form.File
+                id="image-upload"
+                accept="image/*"
+                onChange={handleChangeImage}
+                ref={imageInput}
+              />
+            </Form.Group>
           </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
+          <Container
+            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center mb-3`}
+          >
+            <div>{textFields}</div>
+          </Container>
         </Col>
       </Row>
     </Form>

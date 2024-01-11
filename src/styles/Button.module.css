@@ -6,46 +6,37 @@
     margin: 0 2px;
     min-width: 75px;
     border-color: transparent;
-  }
+}
 
-  .Button:hover {
-    opacity: 0.8;
+.Button:hover {
     border-color: transparent;
     cursor: pointer;
   }
-  
-  .Button:hover:active {
+
+.Red {
     background-color: rgb(163, 0, 0) !important;
-  }
-  
-  .Button:active {
-    background-color: rgb(163, 0, 0) !important;
-  }
-  
-  .Button:focus {
-    background-color: rgb(163, 0, 0);
-  }
-
-  .Red {
-    background-color: rgb(163, 0, 0);
     color: #fafafa;
-  }
+    border: transparent;
+    opacity: 1 !important;
+}
 
-  .Red:hover {
-    background-color: rgb(214, 136, 136);
+.Red:hover {
+    background-color: rgb(214, 136, 136) !important;
     color: #fafafa;
-  }
+}
 
-  .Light {
-    background-color: rgb(115, 115, 115);
-  }
+.Light {
+    background-color: rgb(115, 115, 115) !important;
+}
 
-  .Light:hover {
-    background-color: rgb(147, 147, 147);
+.Light:hover,
+.Light:hover:active,
+.Light:focus {
+    background-color: rgb(147, 147, 147) !important;
     color: #fafafa;
-  }
-  
-  .Wide {
+}
+
+.Wide {
     padding: 10px 50px;
     width: 100%;
-  }
+}

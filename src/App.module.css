@@ -12,8 +12,14 @@
     background-color: #fafafa;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 2rem 2rem 1rem 2rem;
     box-shadow: 1px 1px 6px 1px gray;
+}
+
+.Image {
+    max-height: 30vh;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 * {
