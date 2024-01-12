@@ -43,7 +43,7 @@ function PostCreateForm() {
     const fetchInstruments = async () => {
       try {
         const response = await axios.get("/posts/create/instrument/");
-        setInstruments(response.data.results);
+        setInstruments([response.data.results]);
       } catch (err) {
         console.log(err);
       }
