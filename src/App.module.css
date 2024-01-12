@@ -41,6 +41,10 @@ i {
     font-size: 1.5rem;
 }
 
+i:hover {
+    transition: color ease-in-out 0.3s;
+}
+
 input[type="file"] {
     display: none;
   }

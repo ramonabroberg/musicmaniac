@@ -1,10 +1,11 @@
 import React from "react";
-import { Card, Media } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Post = (props) => {
   const {
@@ -23,10 +24,31 @@ const Post = (props) => {
     description,
     created_at,
     postDetailPage,
+    setPosts,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleInterested = async () => {
+    try {
+      const { data } = await axiosRes.post("/interested/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? {
+                ...post,
+                interested_count: post.interested_count + 1,
+                interested_id: data.id,
+              }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card className={`${styles.Post} ${appStyles.Content}`}>
@@ -46,7 +68,11 @@ const Post = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className={`${styles.Title} text-center pt-4`}>{title}</Card.Title>}
+        {title && (
+          <Card.Title className={`${styles.Title} text-center pt-4`}>
+            {title}
+          </Card.Title>
+        )}
 
         <div className={`${styles.postInfo} pb-4 pt-4`}>
           {instrument && (
@@ -72,8 +98,38 @@ const Post = (props) => {
         </div>
 
         {description && (
-          <Card.Text className={`${styles.Description} text-center pb-4`}>{description}</Card.Text>
+          <Card.Text className={`${styles.Description} text-center pb-4`}>
+            {description}
+          </Card.Text>
         )}
+        <div className={styles.PostBar}>
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>You can't show interest on your own post</Tooltip>
+              }
+            >
+              <i className="fa-regular fa-star" />
+            </OverlayTrigger>
+          ) : interested_id ? (
+            <span onClick={() => {}}>
+              <i className={`fa-solid fa-star ${styles.Star}`} />
+            </span>
+          ) : currentUser ? (
+            <span onClick={handleInterested}>
+              <i className={`fa-regular fa-star ${styles.StarOutline}`} />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to show interest on this post!</Tooltip>}
+            >
+              <i className="fa-regular fa-star" />
+            </OverlayTrigger>
+          )}
+          {interested_count}
+        </div>
       </Card.Body>
     </Card>
   );
