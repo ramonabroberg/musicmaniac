@@ -50,6 +50,26 @@ const Post = (props) => {
     }
   };
 
+  const handleNotInterested = async () => {
+    try {
+      await axiosRes.delete(`/interested/${interested_id}`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? {
+                ...post,
+                interested_count: post.interested_count - 1,
+                interested_id: null,
+              }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Card className={`${styles.Post} ${appStyles.Content}`}>
       <Card.Body>
@@ -113,7 +133,7 @@ const Post = (props) => {
               <i className="fa-regular fa-star" />
             </OverlayTrigger>
           ) : interested_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleNotInterested}>
               <i className={`fa-solid fa-star ${styles.Star}`} />
             </span>
           ) : currentUser ? (
