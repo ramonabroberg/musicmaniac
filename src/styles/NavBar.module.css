@@ -19,6 +19,10 @@ i {
     padding: 6px;
 }
 
+i {
+    color: rgb(152, 152, 152);
+}
+
 .Active i {
     color: rgb(163, 0, 0);
 }

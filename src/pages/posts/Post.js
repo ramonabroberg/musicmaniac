@@ -15,6 +15,7 @@ const Post = (props) => {
     profile_image,
     interested_id,
     interested_count,
+    comments_count,
     image,
     title,
     instrument,
@@ -149,6 +150,10 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
           {interested_count}
+          <Link to={`/posts/${id}`}>
+            <i className="fa-regular fa-comments pl-3" />
+          </Link>
+          {comments_count}
         </div>
       </Card.Body>
     </Card>
