@@ -83,7 +83,9 @@ function PostCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append('image', imageInput.current.files[0])
+    if (imageInput.current.files.length) {
+        formData.append('image', imageInput.current.files[0])
+    }
     formData.append('title', title)
     formData.append('instrument', instrument)
     formData.append('genre', genre)
@@ -252,9 +254,10 @@ function PostCreateForm() {
                 </>
               ) : (
                 <Form.Label
-                  className="d-flex justify-content-center"
+                  className={`d-flex justify-content-center ${styles.Upload}`}
                   htmlFor="image-upload"
                 >
+                  <i className={`fa-solid fa-arrow-up-from-bracket ${styles.UploadIcon}`}></i>
                   <Asset message="Click to upload an image" />
                 </Form.Label>
               )}
@@ -268,10 +271,10 @@ function PostCreateForm() {
               />
             </Form.Group>
             {errors?.image?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-            {message}
-        </Alert>
-      ))}
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Container>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center mb-3`}

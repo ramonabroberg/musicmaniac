@@ -72,11 +72,11 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={`${styles.Post} ${appStyles.Content}`}>
+    <Card className={`${styles.Post} ${appStyles.Content} mb-4`}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={60} />
+            <Avatar src={profile_image} height={50} />
             {owner}
           </Link>
           <div className="d-flex align-items-center">
@@ -86,33 +86,34 @@ const Post = (props) => {
         </Media>
       </Card.Body>
       <Link className={styles.Post} to={`/posts/${id}`}>
-        <Card.Img src={image} alt={title} />
+        {image && <Card.Img src={image} alt={title} />}
       </Link>
-      <Card.Body>
+      <Link className={styles.Post} to={`/posts/${id}`}>
         {title && (
-          <Card.Title className={`${styles.Title} text-center pt-4`}>
+          <Card.Title className={`${styles.Title} text-center`}>
             {title}
           </Card.Title>
         )}
-
+      </Link>
+      <Card.Body>
         <div className={`${styles.postInfo} pb-4 pt-4`}>
           {instrument && (
-            <Card.Text className="pl-4 pr-4">
+            <Card.Text className="pl-3 pr-3">
               <strong>Instrument:</strong> {instrument}
             </Card.Text>
           )}
           {genre && (
-            <Card.Text className="pl-4 pr-4">
+            <Card.Text className="pl-3 pr-3">
               <strong>Genre:</strong> {genre}
             </Card.Text>
           )}
           {city && (
-            <Card.Text className="pl-4 pr-4">
+            <Card.Text className="pl-3 pr-3">
               <strong>City:</strong> {city}
             </Card.Text>
           )}
           {website && (
-            <Card.Text className="pl-4 pr-4">
+            <Card.Text className="pl-3 pr-3">
               <strong>Link to music:</strong> {website}
             </Card.Text>
           )}

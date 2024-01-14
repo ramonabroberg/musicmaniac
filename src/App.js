@@ -26,16 +26,6 @@ function App() {
               <PostsPage message="No results found. Please change the search keyword." />
             )}
           />
-          <Route
-            exact
-            path="/interested"
-            render={() => (
-              <PostsPage
-                message="No results found. Please change the search keyword or click Interested on a post."
-                filter={`interested__owner__profile=${profile_id}&ordering=-interested__created_at&`}
-              />
-            )}
-          />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
