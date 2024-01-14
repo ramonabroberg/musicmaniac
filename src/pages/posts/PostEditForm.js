@@ -9,14 +9,13 @@ import Container from "react-bootstrap/Container";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Asset from "../../components/Asset";
 
 import axios from "axios";
 import { Alert, Image } from "react-bootstrap";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function PostCreateForm() {
+function PostEditForm() {
   const [errors, setErrors] = useState({});
 
   const [instruments, setInstruments] = useState([]);
@@ -36,8 +35,42 @@ function PostCreateForm() {
     postData;
 
   const imageInput = useRef(null);
-
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/posts/${id}/`);
+        const {
+          image,
+          title,
+          instrument,
+          genre,
+          city,
+          website,
+          description,
+          is_owner,
+        } = data;
+
+        is_owner
+          ? setPostData({
+              image,
+              title,
+              instrument,
+              genre,
+              city,
+              website,
+              description,
+            })
+          : history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [history, id]);
 
   useEffect(() => {
     const fetchInstruments = async () => {
@@ -83,23 +116,23 @@ function PostCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    if (imageInput.current.files[0]) {
-        formData.append('image', imageInput.current.files[0])
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
     }
-    formData.append('title', title)
-    formData.append('instrument', instrument)
-    formData.append('genre', genre)
-    formData.append('city', city)
-    formData.append('website', website)
-    formData.append('description', description)
+    formData.append("title", title);
+    formData.append("instrument", instrument);
+    formData.append("genre", genre);
+    formData.append("city", city);
+    formData.append("website", website);
+    formData.append("description", description);
 
     try {
-        const {data} = await axiosReq.post('/posts/', formData);
-        history.push(`/posts/${data.id}`)
+      await axiosReq.put(`/posts/${id}/`, formData);
+      history.push(`/posts/${id}`);
     } catch (err) {
-        if (err.response?.status !== 401) {
-            setErrors(err.response?.data)
-        }
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
     }
   };
 
@@ -117,7 +150,7 @@ function PostCreateForm() {
       </Form.Group>
       {errors?.title?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
-            {message}
+          {message}
         </Alert>
       ))}
 
@@ -140,7 +173,7 @@ function PostCreateForm() {
       </Form.Group>
       {errors?.instrument?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
-            {message}
+          {message}
         </Alert>
       ))}
 
@@ -163,7 +196,7 @@ function PostCreateForm() {
       </Form.Group>
       {errors?.genre?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
-            {message}
+          {message}
         </Alert>
       ))}
 
@@ -179,7 +212,7 @@ function PostCreateForm() {
       </Form.Group>
       {errors?.city?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
-            {message}
+          {message}
         </Alert>
       ))}
 
@@ -195,7 +228,7 @@ function PostCreateForm() {
       </Form.Group>
       {errors?.website?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
-            {message}
+          {message}
         </Alert>
       ))}
 
@@ -211,7 +244,7 @@ function PostCreateForm() {
       </Form.Group>
       {errors?.description?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
-            {message}
+          {message}
         </Alert>
       ))}
 
@@ -221,11 +254,8 @@ function PostCreateForm() {
       >
         Cancel
       </Button>
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Red}`}
-        type="submit"
-      >
-        Create
+      <Button className={`${btnStyles.Button} ${btnStyles.Red}`} type="submit">
+        Update
       </Button>
     </div>
   );
@@ -238,32 +268,19 @@ function PostCreateForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center mb-3`}
           >
             <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure className="mt-3">
-                    <Image className={appStyles.Image} src={image} />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Red}`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
+              <figure className="mt-3">
+                <Image className={appStyles.Image} src={image} />
+              </figure>
+              <div>
                 <Form.Label
-                  className={`d-flex justify-content-center ${styles.Upload}`}
+                  className={`${btnStyles.Button} ${btnStyles.Red}`}
                   htmlFor="image-upload"
                 >
-                  <i className={`fa-solid fa-arrow-up-from-bracket ${styles.UploadIcon}`}></i>
-                  <Asset message="Click to upload an image" />
+                  Change the image
                 </Form.Label>
-              )}
-            </Form.Group>
-            <Form.Group className="d-none">
+              </div>
               <Form.File
+                className="d-none"
                 id="image-upload"
                 accept="image/*"
                 onChange={handleChangeImage}
@@ -287,4 +304,4 @@ function PostCreateForm() {
   );
 }
 
-export default PostCreateForm;
+export default PostEditForm;

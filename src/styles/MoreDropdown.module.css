@@ -1,0 +1,31 @@
+.MoreDropdownIcon {
+    padding-left: 10px;
+    cursor: pointer;
+    color: rgb(163, 0, 0);
+}
+
+.MoreDropdownIcon i:hover {
+    color: rgb(163, 0, 0);
+}
+
+.DropdownItem {
+    padding: 0;
+    display: inline-block;
+    max-width: 50%;
+}
+
+.DropdownItem:hover {
+    background-color: transparent;
+}
+
+.DropdownItem i:hover {
+    color: rgb(163, 0, 0);
+    transition: color ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.Absolute {
+    position: absolute;
+    z-index: 99;
+    right: 0;
+}

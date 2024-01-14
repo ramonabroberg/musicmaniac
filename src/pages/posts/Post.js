@@ -6,6 +6,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdownMenu } from "../../components/MoreDropdown";
+import { useHistory } from "react-router-dom";
 
 const Post = (props) => {
   const {
@@ -30,6 +32,20 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit`);
+  }
+
+  const handleDelete = async () => {
+    try {
+        await axiosRes.delete(`/posts/${id}/`)
+        history.goBack();
+    } catch (err) {
+        console.log(err);
+    }
+  }
 
   const handleInterested = async () => {
     try {
@@ -81,7 +97,12 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{created_at}</span>
-            {is_owner && postDetailPage && "..."}
+            {is_owner && postDetailPage && (
+              <MoreDropdownMenu
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Media>
       </Card.Body>
