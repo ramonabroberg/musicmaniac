@@ -32,7 +32,7 @@ function PostPage() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" md={{ span: 10, offset: 1 }}>
         <Post {...post.results[0]} setPosts={setPost} postDetailPage />
-        <Container className={`mt-2 ${appStyles.Content}`}>Comments</Container>
+        <Container className={`${appStyles.Content}`}>Comments</Container>
       </Col>
     </Row>
   );

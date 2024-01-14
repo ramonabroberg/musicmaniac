@@ -8,12 +8,8 @@ import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostDetailPage from "./pages/posts/PostDetailPage";
 import PostsPage from "./pages/posts/PostsPage";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
-  const currentUser = useCurrentUser();
-  const profile_id = currentUser?.profile_id || "";
-
   return (
     <div className={styles.App}>
       <NavBar />
