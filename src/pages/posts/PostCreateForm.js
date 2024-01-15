@@ -13,7 +13,7 @@ import Asset from "../../components/Asset";
 
 import axios from "axios";
 import { Alert, Image } from "react-bootstrap";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function PostCreateForm() {

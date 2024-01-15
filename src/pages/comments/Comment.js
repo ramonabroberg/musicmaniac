@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -6,6 +6,7 @@ import Avatar from "../../components/Avatar";
 import { MoreDropdownMenu } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Comment.module.css";
+import CommentEditForm from "./CommentEditForm";
 
 const Comment = (props) => {
   const {
@@ -19,6 +20,7 @@ const Comment = (props) => {
     id,
   } = props;
 
+  const [showEdit, setShowEdit] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -44,7 +46,7 @@ const Comment = (props) => {
   };
 
   return (
-    <div>
+    <>
       <hr />
       <Media>
         <Link to={`/profiles/${profile_id}`}>
@@ -55,13 +57,27 @@ const Comment = (props) => {
             <span className={styles.Owner}>{owner}</span>
           </Link>
           <span className={styles.Date}>{created_at}</span>
-          <p className={styles.Content}>{content}</p>
+          {showEdit ? (
+            <CommentEditForm
+              id={id}
+              profile_id={profile_id}
+              profileImage={profile_image}
+              content={content}
+              setComments={setComments}
+              setShowEdit={setShowEdit}
+            />
+          ) : (
+            <p className={styles.Content}>{content}</p>
+          )}
         </Media.Body>
-        {is_owner && (
-          <MoreDropdownMenu handleEdit={() => {}} handleDelete={handleDelete} />
+        {is_owner && !showEdit && (
+          <MoreDropdownMenu
+            handleEdit={() => setShowEdit(true)}
+            handleDelete={handleDelete}
+          />
         )}
       </Media>
-    </div>
+    </>
   );
 };
 
