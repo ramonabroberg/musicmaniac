@@ -1,102 +1,166 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# musicManiac
 
-Welcome,
+MusicManiac is a website made for musicians that easily wants to get in touch with other musicians. On this website you can view posts that users upload and if you create an account you can even make posts yourself! Do you play an instrument and are searching for a band or do you and your bandmates looking for the missing piece in your band? At musicManiac you can easily search for specific posts so you can find what you're looking for in a matter of seconds!
 
-This is the Code Institute student template for React apps on the Codeanywhere IDE. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.  
-DO NOT use this template if you are using the Gitpod IDE. Use the following command instead:  
-`npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
+### [You can see the website live here](https://musicmaniac-157565ad27af.herokuapp.com/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **31st August, 2023**
+# UX
 
-## Codeanywhere Reminders
+This website targets two different groups:
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+1. Musicians that easily wants to find bands to play music with in their area. 
+2. Bands that are looking for a bandmate to play msuic with.
 
-To log into the Heroku toolbelt CLI:
+# User Stories
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### [Link to my project with user stories](https://github.com/users/ramonabroberg/projects/7)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+The goal with this website is to make is easy for musicians to get in touch with other musicians. To display posts that users upload so they can find the right musician in their area.
 
----
+The users have the ability to create an account. When they're logged in they will be able to create posts and also edit and delete them if necessary. They can use the searchbar on the home page to filter the posts by title, instrument, genre, city, and username to make it easy to find what they're looking for. If they want more information about a user they can click on the username or profile picture to see the user's profile page.
 
-Happy coding!
+### Navigation & Authentication:
+- As a user I can see the navbar from every page so that I easily can navigate through the website.
+- As a logged out user I can see the sign in and sign up icons so that I can sign in and sign up if I want to.
+- As a logged in user I can see the Sign out icon in the navbar so that I can log out when I want to.
+- As a user I can see my avatar with profile picture in the navbar so that I can identify my account.
+- As a user I can see my username next to my avatar so that it's even more clear that I'm the one who's logged in.
+- As a user I can navigate fast through the website so that I can see the pages without them refreshing.
+- As a user I can sign up for an account so that I can do everything that is restricted for logged out users.
+- As a user I can sign in so that I can do everything that is restricted for logged out users.
+- As a user I can remain logged in as long as I want to so that I don't get logged out before I want to.
 
-# Getting Started with Create React App
+### Create and intererested posts:
+- As a user I can create new posts so that everyone can see them.
+- As a logged in user I can click on a star icon on all the posts so that the user that uploaded the post will know that I'm interested.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Comments:
+- As a logged in user I can comment on a post so that I can share what I think of it.
+- As a user I can view comments on posts so that I can see what other users think about the posts.
+- As an owner of a comment I can delete my comments so that I can control which of my comments I want to be published.
+- As an owner of a comment I can edit my comments so that I can update my comment if I want to change it.
 
-## Available Scripts
+### Posts:
+- As a user I can see posts on the home page ordered from newest to oldest so that I get a good overview of the posts that gets uploadedd.
+- As a user I can view each post so that I see more information about them.
+- As a user I can search for posts by username, title, instrument, genre and city so that it's easy to find specific posts.
+- As a user I can kepp scrolling through the posts on the website becuase they're loaded automatically so that I don't have to switch between different pages if there is lot of posts.
+- As a user I can click on each post so that I see more information about them.
+- As a post owner I can edit my own posts title, image, instrument, genre, city, website and description so that I can update my posts after they're created.
+- As a post owner I can delete my own posts so that I can change my mind if I want to and erase them after they're created.
 
-In the project directory, you can run:
+### Profiles:
+- As a user I can view users profile pages so that I can see more information about them.
+- As a logged in user I can edit my profile page to add/change name, image and description so that I can update it after it was created.
+- As a user I can see all the users posts on its profile page ordered by the newest first so that I easy can see what a user has uploaded.
+- As a logged in user I can edit my username and password so that I can update it after it was created to keep the account secure.
 
-### `npm install`
+## User Stories left to implement
 
-Installs the required npm packages.
+### Messages:
+- As a logged in user I can see a message icon next to the Interested star icon so that I can message other users.
+- As a logged in user I can click on the message icon so that a message form shows up on the post page.
+- As a logged in user I can submit the message form and get a success alert.
+- As a logged in user I can see a list of unique users that I have sent and received messages from in the inbox so that it looks clean.
+- As a logged in user I can click on a conversation in the inbox to open it so that I can read the whole conversation I've had with that user.
+- As a logged in user I can see a timestamp in the messageconversations with users so that I know when the messages were sent.
 
-### `npm start`
+### Interested page:
+- As a user I can view all the posts I have clicked Interested for so that I will have all the interesting posts on the same page.
 
-Runs the app in the development mode.\
-Open port 3000 to view it in the browser.
+# Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Navigation
 
-### `npm test`
+- The navigation is fixed at the top of the page and shows the "musicManiac" to the left with the menu options to the right.
+- The menu options while logged out is: Home, Sign In and Sign Up.
+- The menu options while logged in is: Add post, Home, Sign Out and the user's profile picture and username.
+- It has a good contrast in colors and are easy to read.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Sign Up
 
-### `npm run build`
+- When you enter the website you can click on "Sign Up" if you want to register an account.
+- It has a link to the Sign In page if the user already has an account.
+- The user have to choose a username and a password that has to be filled in twice.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Sign In
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- The Sign In page looks similar to the sign up page. The difference is that the user only has to enter it's username and password to log in on the page.
+- It has a link to the Sign Up page.
+- The user will land on the home page when logged in.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Sign Out
 
-### `npm run eject`
+- When the user is logged in and clicks on "Sign Out" up on the navigation bar the user will be logged out.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Add post
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Here the user can upload posts.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Testing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### General
 
-## Learn More
+- The website is tested and works in several web browsers and devices.
+- It works on different screen sizes and is responsive.
+- The navigation stays at the top.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Add post
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- The form fields recieve the information as they should.
+- There's max length on the fields.
+- The instrument and genre fields will throw an error if the user doesn't change to a valid option.
+- The url field only accepts an url so it has to be in the correct format.
+- The image, city and websiste fields are optional, it works to submit the form with those fields empty.
+- When the form is correctly submitted the user redirects to the page of the post that they've created.
 
-### Code Splitting
+### Sign Up
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- The Sign Up page works good and as planned.
+- The link to the Sign In page works correctly.
 
-### Analyzing the Bundle Size
+### Sign In
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- The Sign In page works good and as planned.
+- The link to the Sign Up page works well.
+- The user has to enter the user details correct to be able to log in.
 
-### Making a Progressive Web App
+### Sign Out
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- The button works so the user gets logged out by clicking on it.
 
-### Advanced Configuration
+# Wireframe
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Wireframe](https://res.cloudinary.com/dpk2gl3yf/image/upload/v1705318081/wireframe_jsnrzu.png)
 
-### Deployment
+# Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The site was deployed using the following steps:
 
-### `npm run build` fails to minify
+1. Push to GitHub.
+4. Log in on Heroku and click on the app.
+7. Now click on the tab "Deploy" and then on the button "Deploy Branch" at the bottom of the page.
+8. When it's deployed, you can click on "Open App" and see it live.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Credits
+
+- This website is powered by Django, a high-level Python web framework.
+- This website uses Bootstrap, a front-end framework for building responsive and mobile-first websites.
+- Images on this website are hosted and managed by Cloudinary.
+
+- React Router
+- React Infinite Scroll Component
+- Popper
+- Rest Framework
+- Axios
+- GitHub
+- Heroku
+
+- Favicon: [Favicon.io](https://favicon.io/)
+- Fonts: [Google Fonts](https://fonts.google.com/)
+- Piano image: [Piano image](https://unsplash.com/photos/person-playing-piano-hbnH0ILjUZE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+- Guitarist image: [Piano image](https://unsplash.com/photos/man-in-black-leather-jacket-playing-guitar-TmbMLAvXrZQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+- I have taken inspiration from [Code Institute's](https://codeinstitute.net/) earlier projects to get started and to have as a base.
+- Wireframe was created using [Balsamiq](https://balsamiq.com/wireframes/).
+- Icons are from [Font Awesome](https://fontawesome.com/).

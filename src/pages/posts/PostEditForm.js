@@ -65,7 +65,7 @@ function PostEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -78,7 +78,7 @@ function PostEditForm() {
         const response = await axios.get("/posts/create/instrument/");
         setInstruments(response.data.results);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -87,7 +87,7 @@ function PostEditForm() {
         const response = await axios.get("/posts/create/genre/");
         setGenres(response.data.results);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 

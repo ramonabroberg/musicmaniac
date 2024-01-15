@@ -45,7 +45,7 @@ function PostCreateForm() {
         const response = await axios.get("/posts/create/instrument/");
         setInstruments(response.data.results);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -54,7 +54,7 @@ function PostCreateForm() {
         const response = await axios.get("/posts/create/genre/");
         setGenres(response.data.results);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
