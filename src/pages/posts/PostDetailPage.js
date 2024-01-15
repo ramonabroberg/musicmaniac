@@ -57,7 +57,12 @@ function PostDetailPage() {
           ) : null}
           {postComments.length ? (
             postComments.map((comment) => (
-              <Comment key={comment.id} {...comment} />
+              <Comment
+                key={comment.id}
+                {...comment}
+                setPost={setPost}
+                setComments={setComments}
+              />
             ))
           ) : currentUser ? (
             <span>
