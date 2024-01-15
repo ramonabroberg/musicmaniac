@@ -1,0 +1,15 @@
+.Owner {
+    color: rgb(163, 0, 0);
+    font-weight: 600;
+    margin: 0 15px 0 10px
+}
+
+.Date {
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.Content {
+    margin: 5px 10px 0 10px;
+}

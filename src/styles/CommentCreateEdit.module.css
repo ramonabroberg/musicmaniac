@@ -1,3 +1,5 @@
 .CommentForm {
-    
+    margin: 0 8px;
+    border-radius: 8px !important;
+    border: 2px solid rgb(227 223 223);
 }
