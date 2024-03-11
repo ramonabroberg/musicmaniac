@@ -10,8 +10,12 @@ import PostDetailPage from "./pages/posts/PostDetailPage";
 import PostsPage from "./pages/posts/PostsPage";
 import PostEditForm from "./pages/posts/PostEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
+
   return (
     <div className={styles.App}>
       <NavBar />
@@ -24,13 +28,22 @@ function App() {
               <PostsPage message="No results found. Please change the search keyword." />
             )}
           />
+          <Route
+            exact
+            path="/interested"
+            render={() => (
+              <PostsPage
+                message="No results found. Please change the search keyword or click Interested on a post."
+                filter={`interested__owner__profile=${profile_id}`}
+              />
+            )}
+          />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostDetailPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-          <Route exact path="/interested" render={() => <PostsPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

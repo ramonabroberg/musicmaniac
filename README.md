@@ -1,6 +1,6 @@
 # musicManiac
 
-MusicManiac is a website made for musicians that easily wants to get in touch with other musicians. On this website you can view posts that users upload and if you create an account you can even make posts yourself! Do you play an instrument and are searching for a band or do you and your bandmates looking for the missing piece in your band? At musicManiac you can easily search for specific posts so you can find what you're looking for in a matter of seconds!
+MusicManiac is a website made for musicians that easily wants to get in touch with other musicians. On this website you can view posts that users upload and if you create an account you can even make posts yourself! Do you play an instrument and are searching for a band or do you and your bandmates looking for the missing piece in your band? At musicManiac you can easily search for specific posts so you can find what you're looking for in a matter of seconds! You do this by searching for the instrument you are looking for in the search field at the top of the page.
 
 ### [You can see the website live here](https://musicmaniac-157565ad27af.herokuapp.com/)
 
@@ -117,11 +117,13 @@ The users have the ability to create an account. When they're logged in they wil
 ### Sign Up
 
 - The Sign Up page works good and as planned.
+- It shows error messages if the fields are empty or entered incorrect.
 - The link to the Sign In page works correctly.
 
 ### Sign In
 
 - The Sign In page works good and as planned.
+- It shows error messages if the fields are empty or entered incorrect.
 - The link to the Sign Up page works well.
 - The user has to enter the user details correct to be able to log in.
 
