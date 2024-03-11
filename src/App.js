@@ -30,6 +30,7 @@ function App() {
           <Route exact path="/posts/:id" render={() => <PostDetailPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route exact path="/interested" render={() => <PostsPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
