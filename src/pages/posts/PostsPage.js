@@ -8,6 +8,7 @@ import styles from "../../styles/PostsPage.module.css";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -16,10 +17,12 @@ function PostsPage({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
+  const currentUser = useCurrentUser();
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?search=${query}`);
+        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
@@ -34,7 +37,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [pathname, query]);
+  }, [pathname, query, filter, currentUser]);
 
   return (
     <Row className="h-100">
