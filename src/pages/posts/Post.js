@@ -120,12 +120,12 @@ const Post = (props) => {
         <div className={`${styles.postInfo} pb-4 pt-4`}>
           {instrument && (
             <Card.Text className="pl-3 pr-3">
-              <strong>Instrument:</strong> {instrument.replace(/_/g, ' ')}
+              <strong>Instrument:</strong> {instrument.charAt(0).toUpperCase() + instrument.replace(/_/g, ' ').slice(1)}
             </Card.Text>
           )}
           {genre && (
             <Card.Text className="pl-3 pr-3">
-              <strong>Genre:</strong> {genre.replace(/_/g, ' ')}
+              <strong>Genre:</strong> {genre.charAt(0).toUpperCase() + genre.replace(/_/g, ' ').slice(1)}
             </Card.Text>
           )}
           {city && (
