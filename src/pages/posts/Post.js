@@ -135,7 +135,8 @@ const Post = (props) => {
           )}
           {website && (
             <Card.Text className="pl-3 pr-3">
-              <strong>Link to music:</strong> {website}
+              <strong>Link to music: </strong>
+              <a href={website} target="_blank" rel="noopener noreferrer">{website}</a>
             </Card.Text>
           )}
         </div>
