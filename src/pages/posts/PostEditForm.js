@@ -236,9 +236,10 @@ function PostEditForm() {
         <Form.Label>Description</Form.Label>
         <Form.Control
           className={styles.Input}
-          type="textarea"
+          as="textarea"
           name="description"
           value={description}
+          rows={4}
           onChange={handleChange}
         />
       </Form.Group>
