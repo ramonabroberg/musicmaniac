@@ -7,7 +7,7 @@
 
 .Logo {
     font-family: 'Rock Salt', 'cursive', 'sans-serif';
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 i {
@@ -25,6 +25,12 @@ i {
 
 .Active i {
     color: rgb(163, 0, 0);
+}
+
+@media screen and (min-width: 480px) {
+    .Logo {
+        font-size: 1.3rem;
+    }
 }
 
 @media screen and (min-width: 768px) {

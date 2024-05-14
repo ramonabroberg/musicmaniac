@@ -33,7 +33,7 @@ function App() {
             path="/interested"
             render={() => (
               <PostsPage
-                message="No results found. Please change the search keyword or click Interested on a post."
+                message="No results found. Please change the search keyword or click Interested on a post!"
                 filter={`interested__owner__profile=${profile_id}&ordering=-interested__created_at&`}
               />
             )}
