@@ -139,14 +139,14 @@ The users have the ability to create an account. When they're logged in they wil
 
 The site was deployed using the following steps:
 
-1. Push to GitHub.
-4. Log in on Heroku and click on the app.
-7. Now click on the tab "Deploy" and then on the button "Deploy Branch" at the bottom of the page.
-8. When it's deployed, you can click on "Open App" and see it live.
+1. Commit changes.
+2. Push to GitHub.
+3. Log in on Heroku and click on the app.
+4. Click on the tab "Deploy" and then on the button "Deploy Branch" at the bottom of the page.
+5. When it's deployed, you can click on "Open App" and see it live.
 
 # Credits
 
-- This website is powered by Django, a high-level Python web framework.
 - This website uses Bootstrap, a front-end framework for building responsive and mobile-first websites.
 - Images on this website are hosted and managed by Cloudinary.
 
