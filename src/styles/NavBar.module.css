@@ -15,6 +15,10 @@ i {
     vertical-align: middle;
 }
 
+.NavLink {
+    padding: 6px;
+}
+
 i {
     color: rgb(152, 152, 152);
 }
