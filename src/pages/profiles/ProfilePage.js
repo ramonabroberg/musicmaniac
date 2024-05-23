@@ -48,12 +48,9 @@ function ProfilePage() {
         </Col>
       </Row>
       <Row className="px-3 text-center" md={{ span: 8, offset: 2 }}>
-        <Col md={3} className="text-lg-left">
+        <Col className="d-flex justify-content-center">
           <Image roundedCircle src={profile?.image} />
         </Col>
-      </Row>
-      <Row className="px-3" md={{ span: 8, offset: 2 }}>
-        {profile?.name && <Col className="p-3 text-center"><strong>Name: </strong>{profile.name}</Col>}
       </Row>
       <Row md={{ span: 8, offset: 2 }}>
       {profile?.description && <Col className="p-3 text-center"><strong>About me: </strong>{profile.description}</Col>}

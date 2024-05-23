@@ -1,15 +1,21 @@
 # musicManiac
 
-MusicManiac is a website made for musicians that easily wants to get in touch with other musicians. On this website you can view posts that users upload and if you create an account you can even make posts yourself! Do you play an instrument and are searching for a band or do you and your bandmates looking for the missing piece in your band? At musicManiac you can easily search for specific posts so you can find what you're looking for in a matter of seconds! You do this by searching for the instrument you are looking for in the search field at the top of the page.
+MusicManiac is a website made for musicians that easily wants to get in touch with other musicians. On this website you can view posts that users upload and if you create an account you can even make posts yourself! Do you play an instrument and are searching for a band or do you and your bandmates looking for the missing piece in your band? musicManiac is the place where you easily search for specific posts so you can find what you're looking for in a matter of seconds! You do this by searching after what you are looking for in the search field at the top of the page, you can search by username, title, instrument, genre, city and description.
 
 ### [You can see the website live here](https://musicmaniac-157565ad27af.herokuapp.com/)
+
+## Responsive layout
+
+![Responsive-layout](https://res.cloudinary.com/dpk2gl3yf/image/upload/v1716463466/amiresponsive_wdgq9e.png)
 
 # UX
 
 This website targets two different groups:
 
 1. Musicians that easily wants to find bands to play music with in their area. 
-2. Bands that are looking for a bandmate to play msuic with.
+2. Bands that are looking for a bandmate to play music with.
+3. It should be easy to read and navigate so the users understand how to use the site without question.
+4. Good contrast and text that is easy to read are some of the focal points for this website.
 
 # User Stories
 
@@ -34,7 +40,7 @@ The users have the ability to create an account. When they're logged in they wil
 - As a user I can create new posts so that everyone can see them.
 - As a logged in user I can click on a star icon on all the posts so that the user that uploaded the post will know that I'm interested.
 
-## Comments:
+### Comments:
 - As a logged in user I can comment on a post so that I can share what I think of it.
 - As a user I can view comments on posts so that I can see what other users think about the posts.
 - As an owner of a comment I can delete my comments so that I can control which of my comments I want to be published.
@@ -96,6 +102,8 @@ The users have the ability to create an account. When they're logged in they wil
 ## Add post
 
 - Here the user can upload posts.
+- The form includes title, image, instrument, genre, website, city and description.
+- Instruments and genres are showing through dropdown lists.
 
 # Testing
 
@@ -104,15 +112,26 @@ The users have the ability to create an account. When they're logged in they wil
 - The website is tested and works in several web browsers and devices.
 - It works on different screen sizes and is responsive.
 - The navigation stays at the top.
+- The navigation turns to an icon with dropdown menu on smaller devices.
 
-## Add post
+### Add post
 
 - The form fields recieve the information as they should.
 - There's max length on the fields.
 - The instrument and genre fields will throw an error if the user doesn't change to a valid option.
 - The url field only accepts an url so it has to be in the correct format.
 - The image, city and websiste fields are optional, it works to submit the form with those fields empty.
+- The image shows errors if the image don't follow the requirements, if it's too big for example.
 - When the form is correctly submitted the user redirects to the page of the post that they've created.
+
+### View Posts
+
+- Uploaded posts are showing on the home page.
+- It's possible to like posts from that view as long as the user is logged in and that it's another users post.
+- The user clicks on the title och image to open the post and to be able to comment on it.
+- Users can edit and delete their own posts by clicking on them and then on the three dots which shows the options edit and delete.
+- The information on the post is showing when the user clicks on edit so it doesn't have to fill in the form from scratch.
+- After editing a post, the user comes back to the page of the post.
 
 ### Sign Up
 
@@ -130,6 +149,13 @@ The users have the ability to create an account. When they're logged in they wil
 ### Sign Out
 
 - The button works so the user gets logged out by clicking on it.
+
+### Comment
+
+- Comments are displayed under the post that the user commented on.
+- Comments from other posts are not showing.
+- It's possible to comment as long as the user is logged in.
+- Users can edit and delete their comments by clicking on the three dots which shows the options edit and delete.
 
 # Wireframe
 
@@ -150,7 +176,7 @@ The site was deployed using the following steps:
 - This website uses Bootstrap, a front-end framework for building responsive and mobile-first websites.
 - Images on this website are hosted and managed by Cloudinary.
 
-- React Router
+- React
 - React Infinite Scroll Component
 - Popper
 - Rest Framework

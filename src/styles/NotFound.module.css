@@ -1,0 +1,9 @@
+.NotFound {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    color: rgb(163, 0, 0);
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
