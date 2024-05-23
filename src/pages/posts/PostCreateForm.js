@@ -20,7 +20,6 @@ import { useRedirect } from "../../hooks/useRedirect";
 function PostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-
   const [instruments, setInstruments] = useState([]);
   const [genres, setGenres] = useState([]);
 
@@ -36,9 +35,7 @@ function PostCreateForm() {
 
   const { image, title, instrument, genre, city, website, description } =
     postData;
-
   const imageInput = useRef(null);
-
   const history = useHistory();
 
   useEffect(() => {
@@ -88,19 +85,19 @@ function PostCreateForm() {
     if (imageInput.current.files[0]) {
         formData.append('image', imageInput.current.files[0])
     }
-    formData.append('title', title)
-    formData.append('instrument', instrument)
-    formData.append('genre', genre)
-    formData.append('city', city)
-    formData.append('website', website)
-    formData.append('description', description)
+    formData.append('title', title);
+    formData.append('instrument', instrument);
+    formData.append('genre', genre);
+    formData.append('city', city);
+    formData.append('website', website);
+    formData.append('description', description);
 
     try {
         const {data} = await axiosReq.post('/posts/', formData);
         history.push(`/posts/${data.id}`)
     } catch (err) {
         if (err.response?.status !== 401) {
-            setErrors(err.response?.data)
+            setErrors(err.response?.data);
         }
     }
   };
