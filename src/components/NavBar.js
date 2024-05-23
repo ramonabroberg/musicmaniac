@@ -38,13 +38,6 @@ const NavBar = () => {
   );
   const loggedInOptions = (
     <>
-    <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/interested"
-      >
-        <i className="fa-solid fa-star"></i>Interested
-      </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <i className="fa-solid fa-arrow-right-to-bracket"></i>Sign out
       </NavLink>
